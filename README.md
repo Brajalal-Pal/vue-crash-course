@@ -1,3 +1,6 @@
+npm install -g @vue/cli
+vue create vue-crash-course
+
 # vue-crash-course
 
 ## Project setup
