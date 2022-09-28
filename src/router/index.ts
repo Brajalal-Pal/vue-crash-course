@@ -8,6 +8,36 @@ const routes: Array<RouteRecordRaw> = [
     component: HomeView,
   },
   {
+    path: '/users',
+    name: 'users',    
+    component: () => import("@/components/UserList.vue"),
+  },
+  {
+    path: '/users/:userId',
+    name: 'UserDetails',    
+    component: () => import("@/components/UserDetails.vue"),
+  },
+  {
+    path: '/counter',
+    name: 'counter',    
+    component: () => import("@/components/Counter.vue"),
+  },
+  {
+    path: '/register',
+    name: 'register',    
+    component: () => import("@/components/Register.vue"),
+  },
+  {
+    path: '/props',
+    name: 'props',    
+    component: () => import('@/components/Props.vue'),
+  },  
+  {
+    path: '/states',
+    name: 'states',    
+    component: () => import('@/components/States.vue'),
+  },
+  {
     path: '/about',
     name: 'about',
     // route level code-splitting
