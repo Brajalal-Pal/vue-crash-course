@@ -1,30 +1,30 @@
 <template>
     <div class="container">
         <div class="row">
-            <Loader v-if="loading"/>
+            <Loader v-if="loading" />
             <div class="col-md-12" v-if="!loading">
                 <p class="h3">User Details</p>
-                <p>{{user}}</p>
+                <p>{{ user }}</p>
             </div>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from "vue";
 import { Users } from "@/services/UserService";
 import Loader from "./Loader.vue";
 
 export default defineComponent({
     name: "UserDetails",
-    components: { Loader},
+    components: { Loader },
     data() {
         return {
             loading: false,
             user: {},
-            errorMessage: null
-        }
-    },    
+            errorMessage: null,
+        };
+    },
     async created() {
         try {
             this.loading = true;
@@ -36,8 +36,8 @@ export default defineComponent({
             this.loading = false;
             this.errorMessage = error;
         }
-    }
-})
+    },
+});
 </script>
 
 <stryle scoped>

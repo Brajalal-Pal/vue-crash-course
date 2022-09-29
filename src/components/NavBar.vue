@@ -10,6 +10,10 @@
                     <li class="nav-item">
                         <router-link class="nav-link px-3" to="/users">Users</router-link>
                     </li>
+
+                    <li class="nav-item">
+                        <router-link class="nav-link px-3" to="/continents">Continents</router-link>
+                    </li>
                     <li class="nav-item">
                         <router-link class="nav-link px-3" to="/counter">Counter</router-link>
                     </li>
@@ -30,18 +34,14 @@
         </div>
     </nav>
 </template>
-  
+
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from "vue";
 
 export default defineComponent({
-    name: 'NavBar',
-    components: {
-
-    },
+    name: "NavBar",
+    components: {},
 });
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
