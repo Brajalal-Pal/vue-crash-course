@@ -28,6 +28,11 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("@/components/geo-locations/Country.vue"),
     },
     {
+        path: "/test",
+        name: "testpage",
+        component: () => import("@/components/geo-locations/TestPage.vue"),
+    },
+    {
         path: "/counter",
         name: "counter",
         component: () => import("@/components/Counter.vue"),

@@ -36,7 +36,7 @@
                                 <td>{{ country.subregion }}</td>
                                 <td>{{ country.capital ? country.capital[0] : undefined }}</td>
                                 <td>{{ country.area }}</td>
-                                <td>{{ country.flags.png }}</td>
+                                <td> <img :src="country.flags.png" width="100" alt=""/></td>
                             </tr>
                         </tbody>
                     </table>
@@ -45,6 +45,23 @@
             <div class="row">
                 {{ errorMsg }}
             </div>
+        </div>
+        <div class="overflow-auto">
+            <b-pagination
+                v-model="currentPage"
+                :total-rows="rows"
+                :per-page="perPage"
+                aria-controls="my-table"
+            ></b-pagination>            
+            <p class="mt-3">Current Page: {{ currentPage }}</p>
+
+            <b-table
+                id="my-table"
+                :items="countries"
+                :per-page="perPage"
+                :current-page="currentPage"
+                small
+            ></b-table>
         </div>
     </div>
 </template>
@@ -59,33 +76,45 @@ export default defineComponent({
     components: { Loader },
     data() {
         return {
-            continent: "Asia",
+            currentPage: 1,
+            rows: 0,
+            perPage: 10,
+            continent: "" as string | string[],
             loading: false,
             countries: [],
-            errorMsg: null,
+            errorMsg: "" as string,
         };
     },
     async created() {
         try {
             this.loading = true;
-            let continent: string | string[] = this.$route.params.continent;
-            const result = await LocationService.getCountriesByContinent(continent);
+            this.continent = this.$route.params.continent;
+            const result = await LocationService.getCountriesByContinent(this.continent);
 
             this.countries = JSON.parse(JSON.stringify(result.data.data));
-            //console.log("result", this.countries);
-            for (let country of JSON.parse(JSON.stringify(result.data.data))) {
-                //console.log(country);
-                //console.log(JSON.stringify(country));
-                console.log(
-                    country.cca2,
-                    country.name.common,
-                    country.subregion,
-                    country.capital && country.capital[0],
-                    country.area,
-                    country.flags.png
-                );
-            }
+            console.log("result", result);
+
+            let { page , per_page, total } = result.data;
+            this.currentPage = page;
+            this.rows = total;
+            this.perPage = per_page;
+
+            // for (let country of JSON.parse(JSON.stringify(result.data.data))) {
+            //     //console.log(country);
+            //     //console.log(JSON.stringify(country));
+            //     console.log(
+            //         country.cca2,
+            //         country.name.common,
+            //         country.subregion,
+            //         country.capital && country.capital[0],
+            //         country.area,
+            //         country.flags.png
+            //     );
+            // }
             this.loading = false;
+
+            //LocationService.getCurrency("");
+
         } catch (error: any) {
             console.log(error);
 

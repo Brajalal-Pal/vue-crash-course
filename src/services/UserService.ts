@@ -242,6 +242,6 @@ export class Users {
     static getUser(userId: any) {  
       const dataUrl = `https://jsonplaceholder.typicode.com/users/${userId}`;
       return axios.get(dataUrl);
-  }
+    }    
 }
 

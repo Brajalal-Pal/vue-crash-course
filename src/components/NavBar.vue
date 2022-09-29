@@ -29,6 +29,9 @@
                     <li class="nav-item">
                         <router-link class="nav-link px-3" to="/about">About</router-link>
                     </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link px-3" to="/test">TestPage</router-link>
+                    </li>
                 </ul>
             </div>
         </div>
