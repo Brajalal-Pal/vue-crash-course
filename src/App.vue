@@ -2,7 +2,9 @@
     <NavBar />
     <span style="height: 20px">&nbsp;</span>
     <router-view />
-    <footer class="text-dark text-center fw-bold">&copy; 2022, Developed by Brajalal Pal</footer>
+    <div class="bg-info position-fixed bottom-0 w-100" style="height:35px">
+        <footer class="text-dark text-center fw-bold">&copy; 2022, Developed by Brajalal Pal</footer>
+    </div>    
 </template>
 
 <script lang="ts">

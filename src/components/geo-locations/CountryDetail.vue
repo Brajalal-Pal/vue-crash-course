@@ -36,8 +36,9 @@
                     </ul>
                 </div>
             </div>
+            <button class="btn btn-primary mb-5 w-auto" @click="$router.go(-1)">Previouse Page</button>         
         </div>
-        <button class="btn btn-primary m-3" @click="$router.go(-1)">Previouse Page</button>
+        
         <pre v-if="true">{{ country }}</pre>
     </div>
 </template>

@@ -57,6 +57,12 @@ const routes: Array<RouteRecordRaw> = [
         name: "states",
         component: () => import("@/components/States.vue"),
     },
+    
+    {
+        path: "/payment",
+        name: "PaymentComponent",
+        component: () => import("@/components/payment/Payment.vue"),
+    },
     {
         path: "/about",
         name: "about",

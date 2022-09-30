@@ -4,9 +4,7 @@
             <div class="col">
                 <p class="h3 fw-bold text-success">Continent List</p>
                 <p class="fst-italic">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam recusandae ratione aspernatur error rem
-                    aliquam ullam iste dolorem esse quo, quis nam nulla excepturi nihil obcaecati voluptatem fugiat
-                    dignissimos provident?
+                    A continent is any of several large landmasses. Generally identified by convention rather than any strict criteria, up to seven geographical regions are commonly regarded as continents. Ordered from largest in area to smallest, these seven regions are: Asia, Africa, North America, South America, Antarctica, Europe, and Australia.[1] Variations with fewer continents may merge some of these, for example America, Eurasia, or Afro-Eurasia are sometimes treated as single continents, which can bring the total number as low as four. Zealandia, a largely submerged mass of continental crust, has also been described as a continent.
                 </p>
             </div>
             <Loader v-if="loading" />

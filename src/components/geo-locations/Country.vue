@@ -43,12 +43,9 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-            <div class="row">
-                {{ errorMsg }}
-            </div>
-        </div>
-        <button class="btn btn-primary m-3" @click="$router.go(-1)">Previouse Page</button>
+            </div>   
+            <button class="btn btn-primary mb-5 w-auto" @click="$router.go(-1)">Previouse Page</button>         
+        </div>                
     </div>
 </template>
 
