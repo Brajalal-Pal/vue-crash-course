@@ -19,24 +19,26 @@
                                 <th>Country</th>
                                 <th>Sub-Region</th>
                                 <th>Capital</th>
+                                <th>Currency</th>
                                 <th>Area</th>
                                 <th>Flag</th>
                             </tr>
                         </thead>
                         <tbody v-if="!loading">
-                            <tr v-for="country in countries" :key="country.cca2">
-                                <td>{{ country.cca2 }}</td>
+                            <tr v-for="country in countries" :key="country.cca3">
+                                <td>{{ country.cca3 }}</td>
                                 <td>
                                     <router-link
                                         class="text-decoration-none fw-bold text-success"
-                                        :to="`/countries/${country.cca2}`"
+                                        :to="`/countries/${country.name.common}`"
                                         >{{ country.name.common }}</router-link
                                     >
                                 </td>
                                 <td>{{ country.subregion }}</td>
                                 <td>{{ country.capital ? country.capital[0] : undefined }}</td>
+                                <td>{{ getCurrencyList(country.currencies) }}</td>
                                 <td>{{ country.area }}</td>
-                                <td> <img :src="country.flags.png" width="100" alt=""/></td>
+                                <td><img :src="country.flags.png" width="100" alt="" /></td>
                             </tr>
                         </tbody>
                     </table>
@@ -46,23 +48,7 @@
                 {{ errorMsg }}
             </div>
         </div>
-        <div class="overflow-auto">
-            <b-pagination
-                v-model="currentPage"
-                :total-rows="rows"
-                :per-page="perPage"
-                aria-controls="my-table"
-            ></b-pagination>            
-            <p class="mt-3">Current Page: {{ currentPage }}</p>
-
-            <b-table
-                id="my-table"
-                :items="countries"
-                :per-page="perPage"
-                :current-page="currentPage"
-                small
-            ></b-table>
-        </div>
+        <button class="btn btn-primary m-3" @click="$router.go(-1)">Previouse Page</button>
     </div>
 </template>
 
@@ -70,6 +56,7 @@
 import { defineComponent } from "vue";
 import { LocationService } from "@/services/LocationService";
 import Loader from "@/components/Loader.vue";
+import { Country } from "@/services/functions";
 
 export default defineComponent({
     name: "CountryList",
@@ -81,9 +68,14 @@ export default defineComponent({
             perPage: 10,
             continent: "" as string | string[],
             loading: false,
-            countries: [],
+            countries: [] as Country[],
             errorMsg: "" as string,
         };
+    },
+    methods: {
+        getCurrencyList(currencies: object) {
+            return LocationService.getCurrency(currencies);
+        },
     },
     async created() {
         try {
@@ -94,27 +86,11 @@ export default defineComponent({
             this.countries = JSON.parse(JSON.stringify(result.data.data));
             console.log("result", result);
 
-            let { page , per_page, total } = result.data;
+            let { page, per_page, total } = result.data;
             this.currentPage = page;
             this.rows = total;
             this.perPage = per_page;
-
-            // for (let country of JSON.parse(JSON.stringify(result.data.data))) {
-            //     //console.log(country);
-            //     //console.log(JSON.stringify(country));
-            //     console.log(
-            //         country.cca2,
-            //         country.name.common,
-            //         country.subregion,
-            //         country.capital && country.capital[0],
-            //         country.area,
-            //         country.flags.png
-            //     );
-            // }
             this.loading = false;
-
-            //LocationService.getCurrency("");
-
         } catch (error: any) {
             console.log(error);
 

@@ -57,7 +57,7 @@ export default defineComponent({
     data() {
         return {
             loading: false,
-            continents: [],
+            continents: [] as any,
             errorMsg: null,
         };
     },
